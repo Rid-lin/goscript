@@ -1,0 +1,19 @@
+[Unit]
+  Description=goscript - generator static web-page
+  After=network.target
+ 
+[Service]
+  ExecStart=/usr/local/bin/goscript
+  ExecStop=/bin/kill -SIGTERM $MAINPID
+  Type=idle
+  KillMode=process
+  Restart=on-failure
+  RestartSec=5s
+
+  SyslogIdentifier=goscript
+  SyslogFacility=daemon
+  User=proxy
+  Group=proxy
+ 
+[Install]
+  WantedBy=multiuser.target

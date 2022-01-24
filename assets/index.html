@@ -1,0 +1,53 @@
+{{ define "index.html" }}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>All articles from DB</title>
+	<style type="text/css" media="screen">
+		{{ .Style }}	
+	</style>
+</head>
+
+<body>
+	<header>
+		<h2>{{.Header}}</h2>
+	</header>
+	<!-- <hr> -->
+	<CENTER>
+		<div class="article_list">
+			<table>
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>magazines</th>
+						<th>article_types</th>
+						<th>author</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{ range $k, $v := .Table }}
+					<tr>
+						<th> {{$v.ID}} </th>
+						<th> {{$v.Magazines}} </th>
+						<th> {{$v.ArticleTypes}} </th>
+						<th> {{$v.Author}} </th>
+					</tr>
+					{{ end }}
+				</tbody>
+			</table>
+		</div>
+		<!-- <HR> -->
+	</CENTER>
+	<footer class="sticky">
+		<body><a href="/">GoScript <i>© 2022</i> by {{ .Author }} </a></body>
+		<body><a href="mailto:{{ .Email }}">Email</a></body>
+	</footer>
+</body>
+
+</html>
+
+{{ end }}
