@@ -19,7 +19,6 @@ func (a *App) SaveArticlesToFile(articles []*Article, pathToWeb string) error {
 	if err != nil {
 		return err
 	}
-	// styleCssStr := fmt.Sprint(string(styleCss))
 	DisplayData := displayData{
 		Style:  string(styleCss),
 		Header: "Articles",
@@ -27,8 +26,8 @@ func (a *App) SaveArticlesToFile(articles []*Article, pathToWeb string) error {
 		Author: "Vladislav Vegner",
 		Email:  "vlad@vegner.org",
 	}
-	// fmt.Print(styleCssStr)
-	ts := template.Must(template.New("index.html").ParseFiles("assets/index.html"))
+	ts, err := template.ParseFS(a.fs, "assets/index.html")
+	// ts := template.Must(template.New("index.html").ParseFiles("assets/index.html"))
 	if err != nil {
 		return err
 	}
